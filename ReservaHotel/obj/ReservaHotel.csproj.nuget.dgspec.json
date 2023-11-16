@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Vinicius\\OneDrive\\Área de Trabalho\\Projeto\\ReservaHotel\\ReservaHotel.csproj": {}
+    "C:\\Users\\Pc\\Desktop\\Projeto\\ProjetoReserva\\ReservaHotel\\ReservaHotel.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Vinicius\\OneDrive\\Área de Trabalho\\Projeto\\ReservaHotel\\ReservaHotel.csproj": {
+    "C:\\Users\\Pc\\Desktop\\Projeto\\ProjetoReserva\\ReservaHotel\\ReservaHotel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Vinicius\\OneDrive\\Área de Trabalho\\Projeto\\ReservaHotel\\ReservaHotel.csproj",
+        "projectUniqueName": "C:\\Users\\Pc\\Desktop\\Projeto\\ProjetoReserva\\ReservaHotel\\ReservaHotel.csproj",
         "projectName": "ReservaHotel",
-        "projectPath": "C:\\Users\\Vinicius\\OneDrive\\Área de Trabalho\\Projeto\\ReservaHotel\\ReservaHotel.csproj",
-        "packagesPath": "C:\\Users\\Vinicius\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vinicius\\OneDrive\\Área de Trabalho\\Projeto\\ReservaHotel\\obj\\",
+        "projectPath": "C:\\Users\\Pc\\Desktop\\Projeto\\ProjetoReserva\\ReservaHotel\\ReservaHotel.csproj",
+        "packagesPath": "C:\\Users\\Pc\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Pc\\Desktop\\Projeto\\ProjetoReserva\\ReservaHotel\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Vinicius\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -90,7 +93,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
         }
       }
     }

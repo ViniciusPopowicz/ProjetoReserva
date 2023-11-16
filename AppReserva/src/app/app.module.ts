@@ -11,16 +11,19 @@ import { AppComponent } from './app.component';
 import { ReservasService } from './reservas.service';
 import { PremiosService } from './premios.service';
 import { ClientesService } from './clientes.service';
+import { VouchersService } from './vouchers.service';
 import { ReservasComponent } from './components/reservas/reservas.component';
 import { PremiosComponent } from './components/premios/premios.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
+import { VouchersComponent } from './components/vouchers/vouchers.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ReservasComponent,
     PremiosComponent,
-    ClientesComponent
+    ClientesComponent,
+    VouchersComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,7 @@ import { ClientesComponent } from './components/clientes/clientes.component';
     ReactiveFormsModule,
     ModalModule.forRoot()
   ],
-  providers: [HttpClientModule, PremiosService, ReservasService, ClientesService],
+  providers: [HttpClientModule, PremiosService, ReservasService, ClientesService, VouchersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
