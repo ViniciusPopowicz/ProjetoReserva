@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import {Servico} from 'src/app/Servico';
-import { ServicosService } from './../../servicos.service';
 import { Observer } from 'rxjs';
+import { ServicosService } from 'src/app/servicos.service';
 
 @Component({
   selector: 'app-servicos',
@@ -16,16 +16,15 @@ export class ServicosComponent implements OnInit{
   formulario: any;
   tituloFormulario: string = '';
   
-  constructor(private servicosService : ServicosService) {
-   }
+  constructor(private servicosService: ServicosService) { }
 
   ngOnInit(): void {
     this.tituloFormulario = 'Novo Servico';
     this.formulario = new FormGroup({
       idServico: new FormControl(null),
-      descricao: new FormControl(null),
-      valorServico: new FormControl(null),
-      pacotes: new FormControl(null),
+      Descricao: new FormControl(null),
+      ValorServico: new FormControl(null),
+      Pacotes: new FormControl(null),
     })
 
 
@@ -33,26 +32,23 @@ export class ServicosComponent implements OnInit{
     this.servicosService.listar().subscribe(servicos => {
       this.servicos = servicos;
       if (this.servicos && this.servicos.length > 0) {
-        this.formulario.get('idServico')?.setValue(this.servicos[0].IdServico);
+        this.formulario.get('IdServico')?.setValue(this.servicos[0].IdServico);
       }
+
     });
+
   }
   enviarFormulario(): void {
     const servico : Servico = this.formulario.value;
     servico.Pacotes = [];
     servico.IdServico = 0;
+    
+
     const observer: Observer<Servico> = {
-        next(_result): void {alert('Serviço salvo com sucesso.');
-      },error(error): void {alert(`Erro ao salvar! ${servico.IdServico}\n${servico.Pacotes}` + error);
+        next(_result): void {alert('Modelo salvo com sucesso.');
+      },error(error): void {alert(`Erro ao salvar!`);
     },complete(): void {},
   };
-
-    if (servico.IdServico && !isNaN(Number(servico.IdServico))) 
-    {
-      this.servicosService.atualizar(servico).subscribe(observer);
-    } else 
-    {
-      this.servicosService.cadastrar(servico).subscribe(observer);}
-  } 
-  
+    this.servicosService.cadastrar(servico).subscribe(observer);
+  }
 }

@@ -41,13 +41,10 @@
               </button>
             </div>
 
-            <div class="pl-1">
-              <button type="button" class="btn btn-sm btn-light">Voltar</button>
-            </div>
 
             <div class="container">
               <h1>Lista de serviços</h1>
-              <table class="table">
+              <table class="table" name="listaServicos">
                 <thead>
                   <tr>
                     <th>ID</th>
@@ -56,10 +53,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let servico of servicos; type: Servico">
-                    <td>{{ servico.idServico }}</td>
-                    <td>{{ servico.descricao }}</td>
-                    <td>{{ servico.valorServico }}</td>
+                  <tr *ngFor="let servico of servicos">
+
+                    <td>{{ servico?.IdServico }}</td>
+                    <td>{{ servico?.Descricao }}</td>
+                    <td>{{ servico?.ValorServico }}</td>
                   </tr>
                 </tbody>
               </table>                

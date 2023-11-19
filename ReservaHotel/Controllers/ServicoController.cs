@@ -167,7 +167,7 @@ public class ServicoController : ControllerBase
 
         return Ok();
     }
-
+    
     [HttpDelete]
     [Route("excluir/{id}")]
     public async Task<ActionResult> Excluir(int id)

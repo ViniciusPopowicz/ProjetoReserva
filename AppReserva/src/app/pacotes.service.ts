@@ -25,8 +25,8 @@ export class PacotesService {
     const url = `${this.apiUrl}/listar`;
     return this.http.get<Pacote[]>(url);
   }
-  buscar(idPacote: number): Observable<Pacote> {
-    const url = `${this.apiUrl}/buscar/${idPacote}`;
+  buscar(IdPacote: number): Observable<Pacote> {
+    const url = `${this.apiUrl}/buscar/${IdPacote}`;
     return this.http.get<Pacote>(url);
   }
   cadastrar(pacote: Pacote): Observable<any> {
@@ -37,8 +37,8 @@ export class PacotesService {
     const url = `${this.apiUrl}/atualizar`;
     return this.http.put<Pacote>(url, Pacote, httpOptions);
   }
-  excluir(idPacote: number): Observable<any> {
-    const url = `${this.apiUrl}/buscar/${idPacote}`;
+  excluir(IdPacote: number): Observable<any> {
+    const url = `${this.apiUrl}/buscar/${IdPacote}`;
     return this.http.delete<string>(url, httpOptions);
   }
 

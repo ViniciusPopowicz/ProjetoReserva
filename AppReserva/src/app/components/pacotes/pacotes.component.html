@@ -3,37 +3,45 @@
     <div class="col-6 border border-light rounded p-5 shadow">
       <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
         <div class="container">
+          <div class="container">
+            <h1>Cadastro de Pacotes</h1>
+            <hr>
+          </div>
+
           <div class="row">
             <div class="form-group">
               <input
                 type="hidden"
-                formControlName="idPacote"
+                formControlName="IdPacote"
                 value="0"
               />
             </div>
             <div class="form-group">
               <input
                 type="hidden"
-                formControlName="valorPacote"
+                formControlName="ValorPacote"
                 value="0"
               />
             </div>
-
-            <div *ngFor="let servico of servicos; let i = index">
-              <label>
-                {{ servico.descricao }}
-              </label>
-              <input type="checkbox" (change)="checkboxChange($event, servico)">
+            <div >
+              <table>
+                <tbody>
+                  <tr *ngFor="let servico of servicos">
+                    <td>{{ servico.Descricao }}</td>
+                    <input type="checkbox" (change)="checkboxChange($event, servico)">
+                  </tr>
+                </tbody>
+              </table>            
             </div>
+            <div class="container">
+              <br><br>
+              <button type="submit" class="btn btn-sm btn-outline-secondary">
+                Salvar
+              </button>
+              <br><br>
+            </div>
+
             
-
-            <button type="submit" class="btn btn-sm btn-outline-secondary">
-              Salvar
-            </button>
-
-            <div class="pl-1">
-              <button type="button" class="btn btn-sm btn-light">Voltar</button>
-            </div>
           </div>
 
           <div class="container">
@@ -48,15 +56,13 @@
               </thead>
               <tbody>
                 <tr *ngFor="let pacote of pacotes">
-                  <td>{{ pacote.idPacote }}</td>
+                  <td>{{ pacote.IdPacote }}</td>
                   <td>
-                    <ul>
-                      <li *ngFor="let servico of pacote.servicos">
-                        {{ servico.descricao }}
-                      </li>
-                    </ul>
+                    <div *ngFor="let servico of pacote.Servicos">
+                      {{ servico.Descricao }}
+                    </div>
                   </td>
-                  <td>{{ pacote.valorPacote }}</td>
+                  <td>{{ pacote.ValorPacote }}</td>
                 </tr>
               </tbody>
             </table>
