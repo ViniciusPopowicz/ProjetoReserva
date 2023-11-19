@@ -13,11 +13,16 @@ import { PremiosService } from './premios.service';
 import { ClientesService } from './clientes.service';
 import { VouchersService } from './vouchers.service';
 import { PagamentosService } from './pagamentos.service';
+import { PacotesService } from './pacotes.service';
+import { ServicosService } from './servicos.service';
+
 import { ReservasComponent } from './components/reservas/reservas.component';
 import { PremiosComponent } from './components/premios/premios.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
 import { VouchersComponent } from './components/vouchers/vouchers.component';
 import { PagamentosComponent } from './components/pagamentos/pagamentos.component';
+import { PacotesComponent } from './components/pacotes/pacotes.component';
+import { ServicosComponent } from './components/servicos/servicos.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,9 @@ import { PagamentosComponent } from './components/pagamentos/pagamentos.componen
     PremiosComponent,
     ClientesComponent,
     VouchersComponent,
-    PagamentosComponent
+    PagamentosComponent,
+    PacotesComponent,
+    ServicosComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +43,7 @@ import { PagamentosComponent } from './components/pagamentos/pagamentos.componen
     ReactiveFormsModule,
     ModalModule.forRoot()
   ],
-  providers: [HttpClientModule, PremiosService, ReservasService, ClientesService, VouchersService, PagamentosService],
+  providers: [HttpClientModule, PremiosService, ReservasService, ClientesService, VouchersService, PagamentosService, PacotesService, ServicosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

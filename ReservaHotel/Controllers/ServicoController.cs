@@ -24,16 +24,19 @@ public class ServicoController : ControllerBase
 
     [HttpPost]
     [Route("cadastrar")]
-    public async Task<ActionResult> Cadastrar(string descricao,float valorServico)
+    public async Task<ActionResult> Cadastrar(Servico servico)
     {
+
+        foreach (var servicoLista in _dbContext.Servicos.AsNoTracking())
+        {
+            _dbContext.Entry(servicoLista).State = EntityState.Detached;
+        }
+
+        _dbContext.Servicos.AttachRange(servico);
+
+
         if (_dbContext is null) return NotFound();
         if (_dbContext.Servicos is null) return NotFound();
-
-
-        var servico = new Servico{
-            Descricao = descricao,
-            ValorServico = valorServico
-        };
 
         await _dbContext.AddAsync(servico);
         await _dbContext.SaveChangesAsync();
@@ -47,7 +50,7 @@ public class ServicoController : ControllerBase
 
     [HttpGet]
     [Route("listar")]
-    public async Task<ActionResult<IEnumerable<ServicoViewModel>>> Listar()
+    public async Task<ActionResult<IEnumerable<Servico>>> Listar()
     {
         if (_dbContext is null) return NotFound();
         if (_dbContext.Servicos is null) return NotFound();
@@ -55,15 +58,23 @@ public class ServicoController : ControllerBase
         var servicos = await _dbContext.Servicos.Include(s => s.Pacotes).ToListAsync();
 
         // Mapeia os Servicos para a ViewModel
-        var servicosViewModel = servicos.Select(servico => new ServicoViewModel
-        {
-            IdServico = servico.IdServico,
-            Descricao = servico.Descricao,
-            Pacotes = servico.Pacotes.Select(p => p.IdPacote).ToList(),
-            ValorServico = servico.ValorServico
-        });
+        // var servicosViewModel = servicos.Select(servico => new ServicoViewModel
+        // {
+        //     IdServico = servico.IdServico,
+        //     Descricao = servico.Descricao,
+        //     Pacotes = servico.Pacotes.Select(p => p.IdPacote).ToList(),
+        //     ValorServico = servico.ValorServico
+        // });
 
-        return Ok(servicosViewModel);
+        //return Ok(servicosViewModel);
+        var settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+
+            var json = JsonConvert.SerializeObject(servicos, settings);
+
+            return Content(json, "application/json");    
     }
 
 
@@ -72,7 +83,7 @@ public class ServicoController : ControllerBase
 
     [HttpGet]
     [Route("buscar/{id}")]
-    public async Task<ActionResult<ServicoViewModel>> Buscar(int id)
+    public async Task<ActionResult<Servico>> Buscar(int id)
     {
         if (_dbContext is null) return NotFound();
         if (_dbContext.Servicos is null) return NotFound();
@@ -84,15 +95,24 @@ public class ServicoController : ControllerBase
         if (servico is null) return NotFound();
 
         // pega os valores do servico buscado e passa para a viewmodel, uma classe formatada para a exibição do json;
-        var servicoViewModel = new ServicoViewModel
-        {
-            IdServico = servico.IdServico,
-            Descricao = servico.Descricao,
-            Pacotes = servico.Pacotes.Select(p => p.IdPacote).ToList(),
-            ValorServico = servico.ValorServico
-        };
+        // var servicoViewModel = new ServicoViewModel
+        // {
+        //     IdServico = servico.IdServico,
+        //     Descricao = servico.Descricao,
+        //     Pacotes = servico.Pacotes.Select(p => p.IdPacote).ToList(),
+        //     ValorServico = servico.ValorServico
+        // };
 
-        return Ok(servicoViewModel);
+        //return Ok(servicoViewModel);
+
+        var settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+
+            var json = JsonConvert.SerializeObject(servico, settings);
+
+            return Content(json, "application/json");    
     }
 
 
@@ -140,23 +160,6 @@ public class ServicoController : ControllerBase
 
         return Ok();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     [HttpDelete]
     [Route("excluir/{id}")]

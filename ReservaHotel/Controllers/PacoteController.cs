@@ -19,37 +19,31 @@ namespace ReservaHotel.Controllers
 
         [HttpPost]
         [Route("cadastrar")]
-        public async Task<ActionResult> Cadastrar(List<int> idsServicos)
+        public async Task<ActionResult> Cadastrar(Pacote pacote)
         {
 
-
             if (_dbContext is null) return NotFound();
-            if (idsServicos == null || idsServicos.Count == 0) return BadRequest("A lista de serviços está vazia.");
 
-            var servicosDoPacote = new List<Servico>();
-            var pacote = new Pacote();
-
-            foreach (var idServico in idsServicos)
+            foreach (var pacoteLista in _dbContext.Pacotes.AsNoTracking())
             {
-                var servico = await _dbContext.Servicos.FindAsync(idServico);
-                if(servico != null){
-                    servicosDoPacote.Add(servico);
-                }
-
-                pacote.ValorPacote += servico.ValorServico;
-
-
+                _dbContext.Entry(pacoteLista).State = EntityState.Detached;
             }
 
-            pacote.Servicos = servicosDoPacote;
+            _dbContext.Pacotes.AttachRange(pacote);
+
+
+            _dbContext.Servicos.AttachRange(pacote.Servicos);
             
+            if (pacote.Servicos == null || pacote.Servicos.Count == 0)
+                return BadRequest("A lista de serviços está vazia.");
+
+            pacote.ValorPacote = pacote.Servicos.Sum(servico => servico.ValorServico);
 
             await _dbContext.AddAsync(pacote);
-
-             
             await _dbContext.SaveChangesAsync();
 
-            foreach(Servico servicoPacote in servicosDoPacote){
+            foreach (Servico servicoPacote in pacote.Servicos)
+            {
                 servicoPacote.Pacotes.Add(pacote);
             }
 
@@ -64,6 +58,7 @@ namespace ReservaHotel.Controllers
 
             return Content(json, "application/json");
         }
+
 
 
 
@@ -129,6 +124,9 @@ namespace ReservaHotel.Controllers
             var pacoteBusca = await _dbContext.Pacotes.Include(p => p.Servicos).FirstOrDefaultAsync(p => p.IdPacote == id);
 
             if (pacoteBusca is null) return NotFound();
+
+            _dbContext.Entry(pacoteBusca).State = EntityState.Detached;
+
 
             // Cria uma nova lista de serviços com base na lista de IDs dos novos serviços
             //o where busca o servico da tabela Servicos aonde o id é igual ao id da lista

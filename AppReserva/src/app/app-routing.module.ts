@@ -5,13 +5,17 @@ import { PremiosComponent } from'./components/premios/premios.component';
 import { ClientesComponent } from'./components/clientes/clientes.component';
 import { VouchersComponent } from './components/vouchers/vouchers.component';
 import { PagamentosComponent } from './components/pagamentos/pagamentos.component';
+import { PacotesComponent } from './components/pacotes/pacotes.component';
+import { ServicosComponent } from './components/servicos/servicos.component';
 
 const routes: Routes = [
   {path: 'Premio', component:PremiosComponent},
   {path: 'Reserva', component:ReservasComponent},
   {path: 'Cliente', component:ClientesComponent},
   {path: 'Voucher', component:VouchersComponent},
-  {path: 'Pagamento', component:PagamentosComponent}
+  {path: 'Pagamento', component:PagamentosComponent},
+  {path: 'Pacote', component:PacotesComponent},
+  {path: 'Servico', component:ServicosComponent}
 ];
 
 @NgModule({
