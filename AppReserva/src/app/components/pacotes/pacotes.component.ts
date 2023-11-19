@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PacotesService } from './../../pacotes.service';
 import { Pacote } from 'src/app/Pacote';
 import { Observer } from 'rxjs';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Servico } from 'src/app/Servico';
 import { ServicosService } from 'src/app/servicos.service';
 
@@ -21,7 +21,7 @@ export class PacotesComponent implements OnInit{
   formulario: any;  
   tituloFormulario: string = '';
 
-  constructor(private pacotesService: PacotesService, private servicosService: ServicosService) {}
+  constructor(private pacotesService: PacotesService, private servicosService: ServicosService, private fb: FormBuilder) {}
 
 
   ngOnInit(): void {
@@ -42,7 +42,7 @@ export class PacotesComponent implements OnInit{
     this.pacotesService.listar().subscribe(pacotes => {
       this.pacotes = pacotes;
       if (this.pacotes && this.pacotes.length > 0) {
-        this.formulario.get('idPacote')?.setValue(this.pacotes[0].idPacote);
+        this.formulario.get('idServico')?.setValue(this.pacotes[0].idPacote);
       }
     });
   }
@@ -54,8 +54,7 @@ export class PacotesComponent implements OnInit{
       servicos: this.servicosSelecionados,
       valorPacote: 0,  // Você pode precisar calcular o valor com base nos serviços selecionados
     };
-
-
+  
     const observer: Observer<Pacote> = {
       next(_result): void {
         alert('Pacote salvo com sucesso.');
@@ -91,4 +90,3 @@ export class PacotesComponent implements OnInit{
   }
 
 }
-

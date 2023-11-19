@@ -41,7 +41,14 @@ public class ServicoController : ControllerBase
         await _dbContext.AddAsync(servico);
         await _dbContext.SaveChangesAsync();
 
-        return Created("", servico);
+        var settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+
+            var json = JsonConvert.SerializeObject(servico, settings);
+
+            return Content(json, "application/json");
     }
 
 

@@ -23,16 +23,20 @@ namespace ReservaHotel.Controllers
         {
 
             if (_dbContext is null) return NotFound();
+            if (_dbContext.Pacotes is null) return NotFound();
 
-            foreach (var pacoteLista in _dbContext.Pacotes.AsNoTracking())
+            foreach (var servico in pacote.Servicos)
             {
-                _dbContext.Entry(pacoteLista).State = EntityState.Detached;
+                _dbContext.Entry(servico).State = EntityState.Unchanged;
             }
+
+
 
             _dbContext.Pacotes.AttachRange(pacote);
 
 
-            _dbContext.Servicos.AttachRange(pacote.Servicos);
+
+
             
             if (pacote.Servicos == null || pacote.Servicos.Count == 0)
                 return BadRequest("A lista de serviços está vazia.");
@@ -67,21 +71,20 @@ namespace ReservaHotel.Controllers
 
         [HttpGet]
         [Route("listar")]
-        public async Task<ActionResult<IEnumerable<PacoteViewModel>>> Listar()
+        public async Task<ActionResult<IEnumerable<Pacote>>> Listar()
         {
             if (_dbContext is null) return NotFound();
             
             var pacotes = await _dbContext.Pacotes.Include(p => p.Servicos).ToListAsync();
 
-            // Mapeia os pacotes para a ViewModel
-            var pacotesViewModel = pacotes.Select(pacote => new PacoteViewModel
+            var settings = new JsonSerializerSettings
             {
-                IdPacote = pacote.IdPacote,
-                Servicos = pacote.Servicos.Select(servico => servico.IdServico).ToList(),
-                ValorPacote = pacote.ValorPacote
-            }).ToList();
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
 
-            return Ok(pacotesViewModel);
+            var json = JsonConvert.SerializeObject(pacotes, settings);
+
+            return Content(json, "application/json");
         }
 
 
@@ -90,7 +93,7 @@ namespace ReservaHotel.Controllers
 
         [HttpGet]
         [Route("buscar/{id}")]
-        public async Task<ActionResult<PacoteViewModel>> Buscar(int id)
+        public async Task<ActionResult<Pacote>> Buscar(int id)
         {
             if (_dbContext is null) return NotFound();
                     
@@ -98,15 +101,14 @@ namespace ReservaHotel.Controllers
                     
             if (pacoteBusca is null) return NotFound();
 
-            // Mapear os dados do pacote encontrado para PacoteViewModel
-            var pacoteViewModel = new PacoteViewModel
+            var settings = new JsonSerializerSettings
             {
-                IdPacote = pacoteBusca.IdPacote,
-                Servicos = pacoteBusca.Servicos.Select(s => s.IdServico).ToList(),
-                ValorPacote = pacoteBusca.ValorPacote
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             };
 
-            return Ok(pacoteViewModel);
+            var json = JsonConvert.SerializeObject(pacoteBusca, settings);
+
+            return Content(json, "application/json");
         }
 
 
