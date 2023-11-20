@@ -15,6 +15,9 @@ import { VouchersService } from './vouchers.service';
 import { PagamentosService } from './pagamentos.service';
 import { PacotesService } from './pacotes.service';
 import { ServicosService } from './servicos.service';
+//import { HotelsService } from './hotels.service';
+//import { QuartosService } from './quartos.service';
+//import { RecibosService } from './recibos.service';
 
 import { ReservasComponent } from './components/reservas/reservas.component';
 import { PremiosComponent } from './components/premios/premios.component';
@@ -23,6 +26,9 @@ import { VouchersComponent } from './components/vouchers/vouchers.component';
 import { PagamentosComponent } from './components/pagamentos/pagamentos.component';
 import { PacotesComponent } from './components/pacotes/pacotes.component';
 import { ServicosComponent } from './components/servicos/servicos.component';
+//import { HotelsComponent } from './components/hotels/hotels.component';
+//import { QuartosComponent } from './components/quartos/quartos.component';
+//import { RecibosComponent } from './components/recibos/recibos.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +39,10 @@ import { ServicosComponent } from './components/servicos/servicos.component';
     VouchersComponent,
     PagamentosComponent,
     PacotesComponent,
-    ServicosComponent
+    ServicosComponent,
+    //HotelsComponent,
+    //QuartosComponent,
+    //RecibosComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +52,7 @@ import { ServicosComponent } from './components/servicos/servicos.component';
     ReactiveFormsModule,
     ModalModule.forRoot()
   ],
-  providers: [HttpClientModule, PremiosService, ReservasService, ClientesService, VouchersService, PagamentosService, PacotesService, ServicosService],
+  providers: [HttpClientModule, PremiosService, ReservasService, ClientesService, VouchersService, PagamentosService, PacotesService, ServicosService /*HotelsComponent,QuartosComponent,RecibosComponent*/],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -56,13 +56,13 @@
               </thead>
               <tbody>
                 <tr *ngFor="let pacote of pacotes">
-                  <td>{{ pacote.IdPacote }}</td>
+                  <td>{{ pacote.idPacote }}</td>
                   <td>
-                    <div *ngFor="let servico of pacote.Servicos">
+                    <div *ngFor="let servico of pacote.servicos">
                       {{ servico.Descricao }}
                     </div>
                   </td>
-                  <td>{{ pacote.ValorPacote }}</td>
+                  <td>{{ pacote.valorPacote }}</td>
                 </tr>
               </tbody>
             </table>

@@ -5,7 +5,7 @@
 namespace ReservaHotel.Migrations
 {
     /// <inheritdoc />
-    public partial class novaMig : Migration
+    public partial class novaDef : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

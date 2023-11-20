@@ -8,7 +8,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
 
 
-//adiciona um contexto --- obejto que fornece conexao com o banco
+//adiciona um contexto --- objeto que fornece conexao com o banco
 builder.Services.AddDbContext<BDContext>();
 
 

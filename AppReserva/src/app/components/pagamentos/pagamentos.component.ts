@@ -11,6 +11,7 @@ import { Pagamento } from 'src/app/Pagamento';
 export class PagamentosComponent implements OnInit {
   formulario: any;
   tituloFormulario: string = '';
+  pagamentos : Pagamento[] = [];
   constructor(private PagamentosService : PagamentosService) { }
   ngOnInit(): void {
     this.tituloFormulario = 'Novo Pagamento';
@@ -20,6 +21,9 @@ export class PagamentosComponent implements OnInit {
         valor: new FormControl(null),
         metodoPagamento: new FormControl(null)
       })
+      this.PagamentosService.listar().subscribe(pagamentosListados => {
+        this.pagamentos = pagamentosListados;
+      });
     }
     enviarFormulario(): void {
       const pagamento : Pagamento = this.formulario.value;

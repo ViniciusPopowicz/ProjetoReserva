@@ -28,10 +28,11 @@ export class ReservasService {
   }
   
   cadastrar(reserva: Reserva): Observable<any> {
-    /* console.log(typeof(reserva.dataCheckIn));
-    console.log(typeof(reserva.dataCheckOut));
-    console.log(typeof(reserva.dataReserva));
-    console.log(typeof(reserva.idCliente)); */
+    reserva.dataReserva.toString();
+    reserva.dataCheckIn.toString();
+    reserva.dataCheckOut.toString();
+    reserva.idCliente.toString();
+
     const url = `${this.apiUrl}/cadastrar`;
     return this.http.post<Reserva>(url, reserva, httpOptions);
   }

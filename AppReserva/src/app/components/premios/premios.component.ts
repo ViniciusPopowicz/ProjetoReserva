@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { PremiosService } from 'src/app/premios.service';
 import { Premio } from 'src/app/Premio';
+import { Observer } from 'rxjs';
 
 @Component({
   selector: 'app-premios',

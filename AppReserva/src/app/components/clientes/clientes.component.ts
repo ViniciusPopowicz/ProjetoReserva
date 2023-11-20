@@ -11,7 +11,7 @@ import { ClientesService } from 'src/app/clientes.service';
 export class ClientesComponent implements OnInit{
   formulario: any;
   tituloFormulario: string = '';
-  
+  clientes : Cliente[] = [];
   constructor(private ClientesService : ClientesService) { }
 
   ngOnInit(): void {
@@ -21,6 +21,10 @@ export class ClientesComponent implements OnInit{
       nome: new FormControl(null),
       telefone: new FormControl(null)
     })
+
+    this.ClientesService.listar().subscribe(clientesListados => {
+      this.clientes = clientesListados;
+    });
   }
   enviarFormulario(): void {
     const cliente : Cliente = this.formulario.value;

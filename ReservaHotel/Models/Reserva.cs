@@ -1,7 +1,4 @@
-//criado por Vinicius
-using System;
 using System.ComponentModel.DataAnnotations;
-using ReservaHotel.Models;
 
 namespace ReservaHotel.Models;
 

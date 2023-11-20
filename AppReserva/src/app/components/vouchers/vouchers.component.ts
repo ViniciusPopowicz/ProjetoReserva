@@ -11,6 +11,7 @@ import { Voucher } from 'src/app/Voucher';
 export class VouchersComponent implements OnInit {
   formulario: any;
   tituloFormulario: string = '';
+  vouchers : Voucher[] = [];
   constructor(private VouchersService : VouchersService) { }
   ngOnInit(): void {
     this.tituloFormulario = 'Novo Voucher';
@@ -18,11 +19,16 @@ export class VouchersComponent implements OnInit {
       {
         descricao: new FormControl(null)
       })
+
+      this.VouchersService.listar().subscribe(vouchersListados => {
+        this.vouchers = vouchersListados;
+      });
     }
     enviarFormulario(): void {
       const voucher : Voucher = this.formulario.value;
       this.VouchersService.cadastrar(voucher).subscribe(result => {
         alert('Voucher inserido com sucesso.');
       })
+      location.reload();
     }
 }

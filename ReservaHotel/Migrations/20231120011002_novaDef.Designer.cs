@@ -10,8 +10,8 @@ using ReservaHotel.Data;
 namespace ReservaHotel.Migrations
 {
     [DbContext(typeof(BDContext))]
-    [Migration("20231116032835_novaMig")]
-    partial class novaMig
+    [Migration("20231120011002_novaDef")]
+    partial class novaDef
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

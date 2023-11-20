@@ -36,7 +36,7 @@ export class PremiosService {
   }
   
   excluir(idPremio: number): Observable<any> {
-    const url = `${this.apiUrl}/buscar/${idPremio}`;
+    const url = `${this.apiUrl}/excluir/${idPremio}`;
     return this.http.delete<number>(url, httpOptions);
   }
 }

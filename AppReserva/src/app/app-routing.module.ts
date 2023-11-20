@@ -7,6 +7,9 @@ import { VouchersComponent } from './components/vouchers/vouchers.component';
 import { PagamentosComponent } from './components/pagamentos/pagamentos.component';
 import { PacotesComponent } from './components/pacotes/pacotes.component';
 import { ServicosComponent } from './components/servicos/servicos.component';
+//import { HotelsComponent } from './components/hotels/hotels.component';
+//import { QuartosComponent } from './components/quartos/quartos.component';
+//import { RecibosComponent } from './components/recibos/recibos.component';
 
 const routes: Routes = [
   {path: 'Premio', component:PremiosComponent},
@@ -15,7 +18,10 @@ const routes: Routes = [
   {path: 'Voucher', component:VouchersComponent},
   {path: 'Pagamento', component:PagamentosComponent},
   {path: 'Pacote', component:PacotesComponent},
-  {path: 'Servico', component:ServicosComponent}
+  {path: 'Servico', component:ServicosComponent},
+  //{path: 'Hotel', component:HotelsComponent},
+  //{path: 'Quarto', component:QuartosComponent},
+  //{path: 'Recibos', component:RecibosComponent}
 ];
 
 @NgModule({

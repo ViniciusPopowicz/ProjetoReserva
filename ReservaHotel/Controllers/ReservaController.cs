@@ -2,7 +2,7 @@ using ReservaHotel.Data;
 using ReservaHotel.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Routing.Constraints;
+using Microsoft.AspNetCore.HttpLogging;
 
 namespace ReservaHotel.Controllers;
 
@@ -19,10 +19,11 @@ public class ReservaController : ControllerBase
 
     [HttpPost]
     [Route("cadastrar")]
+
     public async Task<ActionResult> Cadastrar(
         string dataReserva,
-        string dataCheckIn, 
-        string dataCheckOut, 
+        string dataCheckIn,
+        string dataCheckOut,
         int idQuarto, 
         int idHotel, 
         int idPacote, 
@@ -30,8 +31,9 @@ public class ReservaController : ControllerBase
         int idVoucher
     )
     {
+
         if (_dbContext is null) return NotFound();
-        if (_dbContext.Reservas is null) return NotFound();
+        if (_dbContext.Reservas is null) return NotFound(); 
 
         var quarto = await _dbContext.Quartos.FindAsync(idQuarto);
         var hotel = await _dbContext.Hotels.FindAsync(idHotel);
@@ -48,7 +50,7 @@ public class ReservaController : ControllerBase
         var reserva = new Reserva(dataReserva, dataCheckIn, dataCheckOut, quarto, hotel, pacote, cliente, voucher, valorReserva);
 
         await _dbContext.AddAsync(reserva);
-        await _dbContext.SaveChangesAsync();
+        await _dbContext.SaveChangesAsync();       
 
         return Created("", reserva);
     }
