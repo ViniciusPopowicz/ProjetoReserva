@@ -3,22 +3,12 @@
         <div class="col-6 border border-light rounded p-5 shadow" *ngIf="formulario">
             <h6>{{ tituloFormulario }}</h6>
             <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
-                <div class="form-group"><label>Data Reserva</label><input type="text" class="form-control form-control-sm"
-                    formControlName="dataReserva" /></div>
-                <div class="form-group"><label>Data CheckIn</label><input type="text" class="form-control form-control-sm"
-                    formControlName="dataCheckIn" /></div>
-                <div class="form-group"><label>Data CheckOut</label><input type="text" class="form-control form-control-sm"
-                    formControlName="dataCheckOut" /></div>
-                <div class="form-group"><label>Quarto</label><input type="number" class="form-control form-control-sm"
-                    formControlName="idQuarto" /></div>
-                <div class="form-group"><label>Hotel</label><input type="number" class="form-control form-control-sm"
-                    formControlName="idHotel" /></div>
-                <div class="form-group"><label>Pacote</label><input type="number" class="form-control form-control-sm"
-                    formControlName="idPacote" /></div>
-                <div class="form-group"><label>Cliente</label><input type="text" class="form-control form-control-sm"
-                    formControlName="idCliente" /></div>
-                <div class="form-group"><label>Voucher</label><input type="number" class="form-control form-control-sm"
-                    formControlName="idVoucher" /></div>                
+                <div class="form-group"><label>Numero do Quarto</label><input type="text" class="form-control form-control-sm"
+                    formControlName="nroQuarto" /></div>
+                <div class="form-group"><label>Numero de Hospedes</label><input type="text" class="form-control form-control-sm"
+                    formControlName="nroHospedes" /></div>
+                <div class="form-group"><label>Valor</label><input type="text" class="form-control form-control-sm"
+                    formControlName="valor" /></div>   
                 <div class="container">
                     <div class="row">
                         <div><button type="submit" class="btn btn-sm btn-outline-secondary">Salvar</button></div>
